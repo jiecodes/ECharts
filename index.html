@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- js操作canvas实现的图表 -->
+  <!-- 导入css文件 -->
+  <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+  <!-- 头部盒子 -->
+  <header>
+    <h1>数据可视化-ECharts</h1>
+    <div class="showTime"></div>
+    <script>
+      var t = null;
+      t = setTimeout(time, 1000); // 开始运行
+      function time() {
+        clearTimeout(t);  // 清除定时器
+        dt = new Date();
+        var y = dt.getFullYear();
+        var mt = dt.getMonth() + 1;
+        var d = dt.getDate();
+        var h = dt.getHours();
+        var m = dt.getMinutes();
+        var s = dt.getSeconds();
+        document.querySelector(".showTime").innerHTML='当前时间:' + y + "年" + mt + "月" + d + "日" + h +
+        "小时" + m + "分钟" + s + "秒";
+        t = setTimeout(time, 1000);   // 设定定时器，循环运行
+      }
+    </script>
+  </header>
+  <!-- 页面主体部分 -->
+  <section class="mainbox">
+    <!-- 左侧盒子 -->
+    <div class="column">
+      <div class="panel bar">
+        <h2>柱形图-就业行业</h2>
+        <div class="chart">
+        </div>
+        <div class="panel-footer"></div>
+      </div>
+      <div class="panel line">
+        <h2>折线图-人员变化<a href="javascript:;">2020</a><a href="javascript:;">2021</a></h2>
+        <div class="chart"></div>
+        <div class="panel-footer"></div>
+      </div>
+      <div class="panel pie">
+        <h2>饼状图-年龄分布</h2>
+        <div class="chart"></div>
+        <div class="panel-footer"></div>
+      </div>
+    </div>
+    <!-- 中间盒子 -->
+    <div class="column">
+      <!-- 数字模块制作 -->
+      <div class="no">
+        <div class="no-hd">
+          <ul>
+            <li>1111</li>
+            <li>2111</li>
+          </ul>
+        </div>
+        <div class="no-bd">
+          <ul>
+            <li>1</li>
+            <li>1</li>
+          </ul>
+        </div>
+      </div>
+      <!-- 地图模块 -->
+      <div class="map">
+        <div class="map1"></div>
+        <div class="map2"></div>
+        <div class="map3"></div>
+        <!-- 鸡 -->
+        <div class="chart"></div>
+      </div>
+    </div>
+    <!-- 右侧盒子 -->
+    <div class="column">
+      <div class="panel bar2">
+        <h2>柱形图-就业行业</h2>
+        <div class="chart"></div>
+        <div class="panel-footer"></div>
+      </div>
+      <div class="panel line2">
+        <h2>折线图-播放量</h2>
+        <div class="chart"></div>
+        <div class="panel-footer"></div>
+      </div>
+      <div class="panel pie2">
+        <h2>饼状图-地区分布</h2>
+        <div class="chart"></div>
+        <div class="panel-footer"></div>
+      </div>
+
+    </div>
+  </section>
+  <!-- 把屏幕分成24等份 屏幕一共1920px  1rem就等于80px  用于使屏幕变成响应式的 -->
+  <script src="./js/flexible.js"></script>
+  <!-- 引入jQuery 才能使用对应的方法 -->
+  <script src="./js/jquery.js"></script>
+  <!-- 引入官方ECharts文件 用于绘制ECharts图表 -->
+  <script src="./js/echarts.min.js"></script>
+  <script>
+    // 使用Echarts图表
+    // 初始化ECharts实例对象    echarts.init(dom容器);
+    var myChart = echarts.init(document.querySelector(".box00"));
+    // 指定图标的配置项和数据
+    var option = {
+      title: {
+        text: 'ECharts 入门示例'
+      },
+      tooltip: {},
+      legend: {
+        data: ['销量']
+      },
+      xAxis: {
+        data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+      },
+      yAxis: {},
+      series: [
+        {
+          name: '销量',
+          type: 'bar',
+          data: [5, 20, 36, 10, 10, 20]
+        }
+      ]
+    };
+    // 把配置项给实例对象
+    myChart.setOption(option);
+  </script>
+</body>
+</html>
+<!-- 引入china.js 才能使用经纬度地图 -->
+<script src="./js/china.js"></script>
+<!-- 引入自己的ECharts文件 -->
+<script src="./js/index.js"></script>
